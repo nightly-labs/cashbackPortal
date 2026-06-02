@@ -1,7 +1,6 @@
 // Styles
 import styles from './styles.module.css'
 // Components
-import Header from '../../components/Header/Header'
 import Rewards from '../../components/Rewards/Rewards'
 import Search from '../../components/Search/Search'
 import Categories from '../../components/Categories/Categories'
@@ -107,7 +106,7 @@ const Home = () => {
         scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
-    const changeSearch = (searchTerm: ReactSelectOptionType) => {
+    const changeSearch = (searchTerm: ReactSelectOptionType | null) => {
         setSearch(searchTerm)
         setCategory(null)
         scrollToTop()
@@ -168,7 +167,6 @@ const Home = () => {
                     />
                 </label>
                 : null}
-            <Header />
             <main ref={scrollRef} className={styles.main}>
                 <Rewards />
                 <div className={styles.filters_section}>
@@ -205,6 +203,8 @@ const Home = () => {
                         categories={categories}
                         category={category}
                         onClickFn={(cat) => changeCategory(cat)}
+                        searchValue={search}
+                        onSearchFn={(item) => changeSearch(item)}
                     />
                 </div>
                 <CardsList

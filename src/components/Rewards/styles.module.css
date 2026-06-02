@@ -1,11 +1,24 @@
 .container {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 16px;
+}
+
+.earned_card {
+    display: none;
+}
+
+.rewards_row {
+    display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 34px;
 }
 
 .subcontainer {
+    position: relative;
     --padding: 22px;
     border-radius: 12px;
     height: 98px;
@@ -15,9 +28,12 @@
     justify-content: space-between;
     padding: 0 var(--padding);
     align-items: center;
+    overflow: hidden;
 }
 
 .reward_details {
+    position: relative;
+    z-index: 1;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -29,6 +45,14 @@
     flex-direction: column;
     align-items: flex-start;
     /* gap: 8px; */
+}
+
+.reward_label {
+    display: none;
+}
+
+.reward_art {
+    display: none;
 }
 
 .icon_container {
@@ -165,6 +189,10 @@
     border-color: var(--pending-btn-pressed-border-c);
 }
 
+.pending_btn_icon {
+    display: none;
+}
+
 .full_width {
     width: calc((570px) * 2);
 }
@@ -174,7 +202,7 @@
 }
 
 @media screen and (max-width:1190px) {
-    .container {
+    .rewards_row {
         flex-direction: column;
     }
 
@@ -185,7 +213,102 @@
 
 @media screen and (max-width: 768px) {
     .container {
-        gap: 10px;
+        width: min(328px, calc(100vw - 32px));
+        gap: 8px;
+    }
+
+    .earned_card {
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 82px;
+        padding: 8px 12px;
+        overflow: hidden;
+        background:
+            linear-gradient(90deg, rgba(135, 147, 255, .05) 0%, rgba(135, 147, 255, 0) 100%),
+            linear-gradient(90deg, rgba(135, 147, 255, .20) 0%, rgba(135, 147, 255, .20) 100%);
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(4, 4, 7, .5);
+    }
+
+    .earned_card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        opacity: .14;
+        background-image:
+            var(--earned-pattern-url),
+            var(--earned-pattern-url);
+        background-repeat: repeat, repeat;
+        background-size: 56px 34px, 56px 34px;
+        background-position: 2px 5px, 30px 22px;
+        transform: scaleX(-1);
+        transform-origin: center;
+        pointer-events: none;
+    }
+
+    .earned_content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    .earned_label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--rewards-earned-label-f-c, #AFBBFF);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .earned_icon {
+        position: relative;
+        z-index: 1;
+        width: 20px;
+        height: 15px;
+        flex-shrink: 0;
+    }
+
+    .earned_amount {
+        color: var(--rewards-earned-amount-f-c, #F7F7F7);
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 24px;
+        white-space: nowrap;
+    }
+
+    .earned_value {
+        color: var(--rewards-earned-value-f-c, #8793FF);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        white-space: nowrap;
+    }
+
+    .earned_art {
+        position: absolute;
+        right: 8px;
+        bottom: -12px;
+        z-index: 1;
+        width: 150px;
+        height: auto;
+        transform: scaleX(-1);
+        pointer-events: none;
+    }
+
+    .rewards_row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 8px;
+        width: 100%;
     }
 
     .icon_container {
@@ -193,13 +316,81 @@
     }
 
     .subcontainer {
-        --padding: 16px;
-        padding-left: 20px;
-        width: calc(352px - (var(--padding) * 2));
+        --padding: 12px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 60px;
+        min-width: 0;
+        padding: 8px var(--padding);
+        align-items: flex-end;
+        background:
+            linear-gradient(125deg, rgba(23, 28, 47, .2) 0%, rgba(135, 147, 255, .2) 100%),
+            linear-gradient(90deg, #171C2F 0%, #171C2F 100%);
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(4, 4, 7, .5);
+    }
+
+    .subcontainer::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 0%, rgba(135, 147, 255, .08) 100%);
+        pointer-events: none;
     }
 
     .full_width {
-        width: calc(352px - (var(--padding) * 2));
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .reward_art {
+        position: absolute;
+        top: 0;
+        left: 61%;
+        display: block;
+        width: 82px;
+        height: 82px;
+        pointer-events: none;
+    }
+
+    .pending_card .reward_art {
+        top: -2px;
+    }
+
+    .reward_details {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .reward_details_subcontainer {
+        width: 100%;
+        min-width: 0;
+        gap: 4px;
+        justify-content: center;
+    }
+
+    .reward_label {
+        display: block;
+        color: var(--reward-tile-label-f-c, #7685A0);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        white-space: nowrap;
+    }
+
+    .amount {
+        margin: 0;
+        padding: 0;
+        color: var(--reward-tile-amount-f-c, #F7F7F7);
+        background: none;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: .32px;
+        text-wrap: nowrap;
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .pending_rewards_text {
@@ -207,10 +398,49 @@
     }
 
     .rewards_usd {
-        font-size: 14px;
+        display: none;
     }
 
     .br {
         display: block;
+    }
+
+    .btn {
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+        width: auto;
+        min-width: 32px;
+        height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        white-space: nowrap;
+    }
+
+    .claim_btn,
+    .pending_btn {
+        color: var(--reward-tile-btn-f-c, #F7F7F7);
+        background: var(--reward-tile-btn-bg, #6067F9);
+        border-width: 0;
+        border-color: transparent;
+    }
+
+    .claim_btn {
+        width: 48px;
+    }
+
+    .pending_btn {
+        width: 32px;
+        padding: 0;
+        font-size: 0;
+    }
+
+    .pending_btn_icon {
+        display: block;
+        width: 16px;
+        height: 16px;
     }
 }

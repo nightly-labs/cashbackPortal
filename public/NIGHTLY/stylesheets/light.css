@@ -1,19 +1,29 @@
-/* DEFAULT — Light mode
+/* NIGHTLY — Light mode
    Aligned with the chromeExtension default palette
-   (Inter font, #3D5AEB primary, #7B9AEB accent, #F9FAFB / #FFFFFF surfaces). */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+   (Prompt font, #3D5AEB primary, #7B9AEB accent, #F9FAFB / #FFFFFF surfaces). */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg: #F9FAFB;
-    --header-bg: #F9FAFB;
+    --bg: #0F0F1A;
+    --header-bg: #0F0F1A;
+    --app-shell-bg: #0F0F1A;
+    --app-shell-border-w: 0;
+    --app-shell-border-c: #2B344D;
+    --app-shell-radius: 16px;
+    --app-shell-shadow: inset 0 0 0 1px #2B344D, 0 4px 16px 2px rgba(0, 0, 0, 0.25);
+    --app-header-title-f-s: 16px;
+    --app-header-title-f-w: 700;
+    --app-header-title-f-c: #F7F7F7;
+    --app-header-btn-bg: rgba(43, 52, 77, 0.50);
+    --app-header-icon-c: #F7F7F7;
 
     --title-f-s: 20px;
     --title-f-w: 600;
-    --title-f-c: #1F2937;
+    --title-f-c: #F7F7F7;
 
     --subtitle-f-s: 14px;
     --subtitle-f-w: 400;
-    --subtitle-f-c: #4B5563;
+    --subtitle-f-c: #B1BDD4;
 
     --header-btn-bg: transparent;
     --header-btn-f-s: 14px;
@@ -23,8 +33,15 @@
     --header-btn-border-c: #3D5AEB;
     --header-btn-radius: 8px;
 
-    --rewards-bg: linear-gradient(312deg, #E6EAFF 0%, #F0F2F5 70.58%);
+    --rewards-bg: linear-gradient(125deg, rgba(23, 28, 47, 0.20) 0%, rgba(135, 147, 255, 0.20) 100%), #171C2F;
     --rewards-img-size: 20px;
+    --rewards-earned-label-f-c: #AFBBFF;
+    --rewards-earned-amount-f-c: #F7F7F7;
+    --rewards-earned-value-f-c: #8793FF;
+    --reward-tile-label-f-c: #7685A0;
+    --reward-tile-amount-f-c: #F7F7F7;
+    --reward-tile-btn-bg: #6067F9;
+    --reward-tile-btn-f-c: #F7F7F7;
 
     --claim-img-bg: #3D5AEB;
     --claim-img-border-w: 0;
@@ -38,19 +55,19 @@
 
     --rewards-text-f-s: 16px;
     --rewards-text-f-w: 500;
-    --claim-text-f-c: #1F2937;
-    --pending-text-f-c: #1F2937;
+    --claim-text-f-c: #F7F7F7;
+    --pending-text-f-c: #F7F7F7;
 
     --rewards-usd-f-s: 14px;
     --rewards-usd-f-w: 400;
-    --claim-usd-f-c: #4B5563;
-    --pending-usd-f-c: #4B5563;
+    --claim-usd-f-c: #8793FF;
+    --pending-usd-f-c: #8793FF;
 
     --rewards-amount-f-s: 35px;
     --rewards-amount-f-w: 600;
 
-    --claim-amount-f-c: #1F2937;
-    --pending-amount-f-c: #1F2937;
+    --claim-amount-f-c: #F7F7F7;
+    --pending-amount-f-c: #F7F7F7;
 
     --rewards-btn-width: 290px;
     --rewards-btn-f-s: 16px;
@@ -63,16 +80,16 @@
     --primary-btn-radius: 8px;
     --primary-btn-border-w: 0;
     --primary-btn-border-c: transparent;
-    --primary-btn-bg: #3D5AEB;
-    --primary-btn-hover-bg: #2E48D9;
-    --primary-btn-pressed-bg: #1E37C2;
-    --primary-btn-disabled-bg: #C5CFFF;
-    --primary-btn-disabled-f-c: #FFFFFF;
+    --primary-btn-bg: #6067F9;
+    --primary-btn-hover-bg: #747BFF;
+    --primary-btn-pressed-bg: #5057E7;
+    --primary-btn-disabled-bg: rgba(96, 103, 249, 0.35);
+    --primary-btn-disabled-f-c: #B1BDD4;
 
-    --pending-btn-f-c: #3D5AEB;
-    --pending-btn-border-c: #3D5AEB;
-    --pending-btn-border-w: 1px;
-    --pending-btn-bg: transparent;
+    --pending-btn-f-c: #F7F7F7;
+    --pending-btn-border-c: transparent;
+    --pending-btn-border-w: 0;
+    --pending-btn-bg: #6067F9;
 
     --pending-btn-hover-f-c: #2E48D9;
     --pending-btn-hover-border-c: #2E48D9;
@@ -84,9 +101,9 @@
     --pending-btn-pressed-border-w: 1px;
     --pending-btn-pressed-bg: #C5CFFF;
 
-    --retailer-card-bg: #FFFFFF;
-    --retailer-card-border-w: 1px;
-    --retailer-card-border-color: #E5E7EB;
+    --retailer-card-bg: #171C2F;
+    --retailer-card-border-w: 0;
+    --retailer-card-border-color: transparent;
     --retailer-card--hover-border-color: var(--retailer-card-border-color);
 
     --retailer-card-img-border-c: #E5E7EB;
@@ -120,9 +137,36 @@
     --retailer-card-amount-campaign-f-w: 600;
     --retailer-card-amount-campaign-bg: #FFE4D6;
 
+    --retailer-deal-card-bg: #171C2F;
+    --retailer-deal-card-border-w: 0;
+    --retailer-deal-card-border-c: transparent;
+    --retailer-deal-card-hover-border-c: transparent;
+    --retailer-deal-card-radius: 6px;
+    --retailer-deal-logo-border-w: 0;
+    --retailer-deal-logo-border-c: transparent;
+    --retailer-deal-logo-radius: 4px;
+    --retailer-deal-name-f-s: 16px;
+    --retailer-deal-name-f-w: 400;
+    --retailer-deal-name-f-c: #F7F7F7;
+    --retailer-deal-name-l-h: 22px;
+    --retailer-deal-amount-f-s: 12px;
+    --retailer-deal-amount-l-h: 16px;
+    --retailer-deal-prefix-f-w: 400;
+    --retailer-deal-prefix-f-c: #8793FF;
+    --retailer-deal-value-f-w: 700;
+    --retailer-deal-value-f-c: #AFBBFF;
+    --retailer-deal-shop-bg: rgba(96, 103, 249, 0.25);
+    --retailer-deal-shop-f-s: 12px;
+    --retailer-deal-shop-f-w: 400;
+    --retailer-deal-shop-f-c: #8793FF;
+    --retailer-deal-shop-hover-bg: rgba(96, 103, 249, 0.40);
+    --retailer-deal-shop-hover-f-c: #AFBBFF;
+    --retailer-deal-shop-radius: 4px;
+    --retailer-deal-skeleton-bg: rgba(96, 103, 249, 0.18);
+
     --deals-amount-f-s: 16px;
     --deals-amount-f-w: 500;
-    --deals-amount-f-c: #1F2937;
+    --deals-amount-f-c: #F7F7F7;
 
     --loading-msg-f-s: 12px;
     --loading-msg-f-w: 500;
@@ -140,17 +184,18 @@
 
     --category-btn-bg: transparent;
     --category-btn-f-s: 14px;
-    --category-btn-f-w: 500;
-    --category-btn-f-c: #3D5AEB;
+    --category-btn-f-w: 400;
+    --category-btn-f-c: #7685A0;
     --category-btn-border-w: 1px;
     --category-btn-border-c: #7B9AEB;
     --category-btn-radius: 8px;
-    --category-btn-hover-bg: #3D5AEB;
-    --category-btn-hover-f-c: #FFFFFF;
-    --category-btn-hover-f-w: 500;
+    --category-btn-hover-bg: rgba(96, 103, 249, 0.25);
+    --category-btn-hover-f-c: #8793FF;
+    --category-btn-hover-f-w: 400;
     --category-btn-hover-border-w: 0;
     --category-btn-hover-border-c: transparent;
-    --category-btn-hover-radius: 8px;
+    --category-btn-hover-radius: 6px;
+    --category-search-icon-c: #7685A0;
 
     --modal-offset-top: -112px;
     --modal-bg: #FFFFFF;
@@ -325,5 +370,5 @@
 }
 
 * {
-    font-family: "Inter", sans-serif;
+    font-family: "Prompt", sans-serif;
 }

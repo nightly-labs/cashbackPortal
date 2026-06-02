@@ -1,8 +1,14 @@
+html,
+#root {
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     background: var(--bg);
     /* For always having scrollbar */
     min-height: calc(100vh + 1px);
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {

@@ -80,6 +80,12 @@
     background: var(--retailer-logo-fallback-bg, linear-gradient(135deg, #667eea 0%, #764ba2 100%));  
 }
 
+.text_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .retailer_name {
     font-size: var(--retailer-card-name-f-s);
     font-weight: var(--retailer-card-name-f-w);
@@ -105,6 +111,29 @@
     background: var(--retailer-card-amount-campaign-bg, var(--retailer-card-amount-bg));
     color: var(--retailer-card-amount-campaign-f-c, var(--retailer-card-amount-f-c));
     font-weight: var(--retailer-card-amount-campaign-f-w, var(--retailer-card-amount-f-w));
+}
+
+.cashback_currency {
+    display: none;
+}
+
+.shop_button {
+    display: none;
+}
+
+.shop_icon {
+    display: block;
+    width: 12px;
+    height: 12px;
+}
+
+.shop_icon_frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
 }
 
 .flag {
@@ -159,7 +188,164 @@
 
 @media screen and (max-width: 768px) {
     .card {
-        width: 152px;
-        padding: 17.659px 9.441px 15.522px 8.559px;
+        box-sizing: border-box;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: min(328px, calc(100vw - 32px));
+        height: 66px;
+        padding: 8px 12px;
+        background: var(--retailer-deal-card-bg, var(--retailer-card-bg)) !important;
+        border-width: var(--retailer-deal-card-border-w, 0);
+        border-color: var(--retailer-deal-card-border-c, transparent);
+        border-radius: var(--retailer-deal-card-radius, 6px);
+        overflow: hidden;
+    }
+
+    .card:hover,
+    .card:active {
+        border-color: var(--retailer-deal-card-hover-border-c, var(--retailer-deal-card-border-c, transparent));
+    }
+
+    .flag {
+        display: none;
+    }
+
+    .logo_container,
+    .fallback_logo_container {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-width: var(--retailer-deal-logo-border-w, 0);
+        border-color: var(--retailer-deal-logo-border-c, transparent);
+        border-radius: var(--retailer-deal-logo-radius, 4px);
+        overflow: hidden;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--retailer-deal-logo-radius, 4px);
+    }
+
+    .fallback_logo {
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: var(--retailer-deal-logo-radius, 4px);
+        font-size: 14px;
+    }
+
+    .fallback_logo_two_letters {
+        font-size: 16px;
+    }
+
+    .text_content {
+        flex: 1 1 auto;
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 0;
+        height: 50px;
+        gap: 2px;
+    }
+
+    .retailer_name {
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        color: var(--retailer-deal-name-f-c, var(--retailer-card-name-f-c));
+        font-size: var(--retailer-deal-name-f-s, 16px);
+        font-weight: var(--retailer-deal-name-f-w, 400);
+        line-height: var(--retailer-deal-name-l-h, 22px);
+        text-overflow: ellipsis;
+    }
+
+    .cashback_rate {
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        color: var(--retailer-deal-prefix-f-c, var(--retailer-card-amount-f-c));
+        background: transparent;
+        border-radius: 0;
+        font-size: var(--retailer-deal-amount-f-s, 12px);
+        font-weight: var(--retailer-deal-prefix-f-w, 400);
+        line-height: var(--retailer-deal-amount-l-h, 16px);
+        text-align: left;
+        text-overflow: ellipsis;
+    }
+
+    .cashback_rate_campaign {
+        color: var(--retailer-deal-prefix-f-c, var(--retailer-card-amount-campaign-f-c, var(--retailer-card-amount-f-c)));
+        background: transparent;
+    }
+
+    .cashback_value,
+    .cashback_currency {
+        color: var(--retailer-deal-value-f-c, var(--retailer-card-amount-f-c));
+        font-weight: var(--retailer-deal-value-f-w, 700);
+        letter-spacing: .24px;
+    }
+
+    .cashback_currency {
+        display: inline;
+    }
+
+    .cashback_word {
+        display: none;
+    }
+
+    .shop_button {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 24px;
+        padding: 4px 8px;
+        box-sizing: border-box;
+        color: var(--retailer-deal-shop-f-c, var(--primary-btn-bg));
+        background: var(--retailer-deal-shop-bg, rgba(96, 103, 249, .25));
+        border-radius: var(--retailer-deal-shop-radius, 4px);
+        font-size: var(--retailer-deal-shop-f-s, 12px);
+        font-weight: var(--retailer-deal-shop-f-w, 400);
+        line-height: 16px;
+        white-space: nowrap;
+        transition: background-color .2s, color .2s;
+    }
+
+    .shop_button:hover {
+        color: var(--retailer-deal-shop-hover-f-c, var(--retailer-deal-shop-f-c, var(--primary-btn-bg)));
+        background: var(--retailer-deal-shop-hover-bg, rgba(96, 103, 249, .4));
+    }
+
+    .skeleton,
+    .skeleton_logo,
+    .skeleton_retailer_name,
+    .skeleton_cashback_rate,
+    .skeleton_shop_button {
+        background: var(--retailer-deal-skeleton-bg, rgba(96, 103, 249, .18));
+    }
+
+    .skeleton_logo {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--retailer-deal-logo-radius, 4px);
+    }
+
+    .skeleton_retailer_name {
+        width: 88px;
+        height: 18px;
+        border-radius: 4px;
+    }
+
+    .skeleton_cashback_rate {
+        width: 112px;
+        height: 14px;
+        border-radius: 4px;
+    }
+
+    .skeleton_shop_button {
+        width: 66px;
     }
 }

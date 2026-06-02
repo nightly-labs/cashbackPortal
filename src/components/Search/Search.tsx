@@ -20,7 +20,7 @@ import Icon from '../Icon/Icon'
 interface Props {
     options: ReactSelectOptionType[]
     value: ReactSelectOptionType | null
-    onChangeFn: (value: ReactSelectOptionType) => void
+    onChangeFn: (value: ReactSelectOptionType | null) => void
 }
 
 const customStyles: StylesConfig<ReactSelectOptionType> = {
@@ -178,7 +178,13 @@ const Search = ({ options, value, onChangeFn }: Props): JSX.Element => {
             | MultiValue<ReactSelectOptionType>
             | null,
     ) => {
-        if (!item || Array.isArray(item)) return
+        if (!item) {
+            onChangeFn(null)
+            return
+        }
+
+        if (Array.isArray(item)) return
+
         const { value } = item as ReactSelectOptionType
 
         sendGaEvent("search_select", {
@@ -266,6 +272,7 @@ const Search = ({ options, value, onChangeFn }: Props): JSX.Element => {
                     SingleValue: (props) => CustomSingleValue({ ...props, isFocused }),
                 }}
                 isMulti={false}
+                isClearable
                 menuIsOpen={isMenuOpen}
                 options={filteredOptions}
                 onChange={handleChange}

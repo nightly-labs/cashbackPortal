@@ -3,7 +3,7 @@ import fetchCache from '../../api/fetchCache'
 import StatusModal from '../Modals/StatusModal/StatusModal'
 import { useRouteLoaderData, useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { type CSSProperties, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import claimSubmit from '../../api/claim/submit'
 import claimInitiate from '../../api/claim/initiate'
@@ -16,6 +16,7 @@ import { ENV } from '../../config'
 import { useWalletAddress } from '../../utils/hooks/useWalletAddress'
 import LoginModal from '../Modals/LoginModal/LoginModal'
 import Icon from '../Icon/Icon'
+import { publicPath } from '../../utils/publicPath'
 
 
 const Rewards = () => {
@@ -165,85 +166,117 @@ const Rewards = () => {
         })
 
     const pendingTotalEstimatedUsd = formatCurrency(balance?.data?.totalPendings[0]?.totalEstimatedUsd ?? 0)
+    const earnedTokenNumber = (balance?.data?.eligible[0]?.tokenAmount ?? 0) + (balance?.data?.totalPendings[0]?.tokenAmount ?? 0)
+    const earnedTokenAmount = earnedTokenNumber.toLocaleString(undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2,
+    })
+    const earnedTotalEstimatedUsd = formatCurrency(
+        (balance?.data?.eligible[0]?.totalEstimatedUsd ?? 0) + (balance?.data?.totalPendings[0]?.totalEstimatedUsd ?? 0)
+    )
+    const assetsPath = publicPath(`${platform}/assets`)
+    const earnedCardStyle = {
+        '--earned-pattern-url': `url("${assetsPath}/piglet-pattern.svg")`,
+    } as CSSProperties
 
     return (
         <div className={styles.container}>
-            {!isAutoClaim ?
-                <div className={styles.subcontainer}>
+            <div className={styles.earned_card} style={earnedCardStyle}>
+                <div className={styles.earned_content}>
+                    <div className={styles.earned_label}>
+                        <img className={styles.earned_icon} src={`${assetsPath}/piglet.svg`} alt="" aria-hidden="true" />
+                        <span>Cashback earned</span>
+                    </div>
+                    <div className={styles.earned_amount}>{earnedTokenAmount} {currentCryptoSymbol}</div>
+                    <div className={styles.earned_value}>Current value: {earnedTotalEstimatedUsd}</div>
+                </div>
+                <img className={styles.earned_art} src={`${assetsPath}/fennec.png`} alt="" aria-hidden="true" />
+            </div>
+            <div className={styles.rewards_row}>
+                {!isAutoClaim ?
+                    <div className={`${styles.subcontainer} ${styles.claimable_card}`}>
+                        <img className={styles.reward_art} src={`${assetsPath}/tip-jar.svg`} alt="" aria-hidden="true" />
+                        <div className={styles.reward_details}>
+                            <div className={`${styles.icon_container} ${styles.claim_icon}`}>
+                                <Icon
+                                    className={styles.icon}
+                                    name="gift.svg"
+                                    alt="gift icon"
+                                />
+                            </div>
+                            <div className={styles.reward_details_subcontainer}>
+                                <div className={styles.reward_label}>Claimable</div>
+                                <div className={`${styles.amount} ${styles.amount_claim}`}>
+                                    {balance?.data?.eligible[0]?.tokenAmount ? `${eligibleTokenAmount} ${currentCryptoSymbol}` : `0 ${cryptoSymbols[0]}`}
+                                </div>
+                                <div className={`${styles.rewards_usd} ${styles.claim_usd}`}>
+                                    {+eligibleTokenAmount.split(/\s/)[0] < minimumClaimThreshold ?
+                                        `Minimum claim amount: ${minimumClaimThreshold} ${currentCryptoSymbol}`
+                                        :
+                                        `Current value: ${eligibleTotalEstimatedUsd}`
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            id="rewards-claim-btn"
+                            className={`${styles.btn} ${styles.claim_btn}`}
+                            onClick={() => signMessage()}
+                            disabled={eligibleTokenNumber === -1 || minimumClaimThreshold === -1 || eligibleTokenNumber < minimumClaimThreshold || loading}
+                        >
+                            {
+                                loading ?
+                                    <Oval
+                                        visible={true}
+                                        height="20"
+                                        width="20"
+                                        color="#fff"
+                                        secondaryColor='grey'
+                                        strokeWidth={6}
+                                        ariaLabel="oval-loading"
+                                    />
+                                    :
+                                    t('claimCashback')
+                            }
+                        </button>
+                    </div>
+                    : null}
+                <div className={`${styles.subcontainer} ${styles.pending_card} ${isAutoClaim ? styles.full_width : ''}`}>
+                    <img className={styles.reward_art} src={`${assetsPath}/hourglass.svg`} alt="" aria-hidden="true" />
                     <div className={styles.reward_details}>
-                        <div className={`${styles.icon_container} ${styles.claim_icon}`}>
-                            <Icon
-                                className={styles.icon}
-                                name="gift.svg"
-                                alt="gift icon"
-                            />
+                        <div className={`${styles.icon_container} ${styles.pending_icon}`}>
+                            <Icon className={styles.icon} name="coins.svg" alt="coins icon" />
                         </div>
                         <div className={styles.reward_details_subcontainer}>
-                            <div className={`${styles.amount} ${styles.amount_claim}`}>
-                                {balance?.data?.eligible[0]?.tokenAmount ? `${eligibleTokenAmount} ${currentCryptoSymbol}` : `0 ${cryptoSymbols[0]}`}
-                            </div>
-                            <div className={`${styles.rewards_usd} ${styles.claim_usd}`}>
-                                {+eligibleTokenAmount.split(/\s/)[0] < minimumClaimThreshold ?
-                                    `Minimum claim amount: ${minimumClaimThreshold} ${currentCryptoSymbol}`
-                                    :
-                                    `Current value: ${eligibleTotalEstimatedUsd}`
+                            <div className={styles.reward_label}>Pending</div>
+                            <div className={`${styles.amount} ${styles.amount_pending}`}>
+                                <span>
+                                    {`${balance?.data?.totalPendings[0]?.tokenAmount ? `${pendingTokenAmount} ${currentCryptoSymbol}` : `0 ${cryptoSymbols[0]}`}`}
+                                </span>
+                                {
+                                    t('pendingRewards') !== 'pendingRewards' ?
+                                        <span className={styles.pending_rewards_text}> {t('pendingRewards')}</span>
+                                        : null
                                 }
-
                             </div>
+                            <div className={`${styles.rewards_usd} ${styles.pending_usd}`}>Current value: <br className={styles.br} />{pendingTotalEstimatedUsd}</div>
                         </div>
                     </div>
                     <button
-                        id="rewards-claim-btn"
-                        className={`${styles.btn} ${styles.claim_btn}`}
-                        onClick={() => signMessage()}
-                        disabled={eligibleTokenNumber === -1 || minimumClaimThreshold === -1 || eligibleTokenNumber < minimumClaimThreshold || loading}
+                        id="rewards-view-btn"
+                        className={`${styles.btn} ${styles.pending_btn}`}
+                        onClick={() => walletAddress ? navigate('/history') : setLoginModalState('open')}
                     >
-                        {
-                            loading ?
-                                <Oval
-                                    visible={true}
-                                    height="20"
-                                    width="20"
-                                    color="#fff"
-                                    secondaryColor='grey'
-                                    strokeWidth={6}
-                                    ariaLabel="oval-loading"
-                                />
-                                :
-                                t('claimCashback')
-                        }
+                        <img
+                            className={styles.pending_btn_icon}
+                            src={`${assetsPath}/arrow-right.svg`}
+                            alt=""
+                            aria-hidden="true"
+                        />
+                        {t('viewRewards')}
                     </button>
                 </div>
-                : null}
-            <div className={`${styles.subcontainer} ${isAutoClaim ? styles.full_width : ''}`}>
-                <div className={styles.reward_details}>
-                    <div className={`${styles.icon_container} ${styles.pending_icon}`}>
-                        <Icon className={styles.icon} name="coins.svg" alt="coins icon" />
-                    </div>
-                    <div className={styles.reward_details_subcontainer}>
-                        <div className={`${styles.amount} ${styles.amount_pending}`}>
-                            <span>
-                                {`${balance?.data?.totalPendings[0]?.tokenAmount ? `${pendingTokenAmount} ${currentCryptoSymbol}` : `0 ${cryptoSymbols[0]}`}`}
-                            </span>
-                            {
-                                t('pendingRewards') !== 'pendingRewards' ?
-                                    <span className={styles.pending_rewards_text}> {t('pendingRewards')}</span>
-                                    : null
-                            }
-                        </div>
-                        {/* <div className={`${styles.amount} ${styles.amount_pending}`}>
-                            {`${balance?.data?.totalPendings[0]?.tokenAmount ? `${pendingTokenAmount} ${currentCryptoSymbol}` : `0 ${cryptoSymbols[0]}`}${t('pendingRewards') !== 'pendingRewards' ? ` ${t('pendingRewards')}` : ''}`}
-                        </div> */}
-                        <div className={`${styles.rewards_usd} ${styles.pending_usd}`}>Current value: <br className={styles.br} />{pendingTotalEstimatedUsd}</div>
-                    </div>
-                </div>
-                <button
-                    id="rewards-view-btn"
-                    className={`${styles.btn} ${styles.pending_btn}`}
-                    onClick={() => walletAddress ? navigate('/history') : setLoginModalState('open')}
-                >
-                    {t('viewRewards')}
-                </button>
             </div>
             <StatusModal
                 status={claimStatus}

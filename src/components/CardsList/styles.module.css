@@ -18,6 +18,9 @@
 
 @media screen and (max-width: 768px) {
     .container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: minmax(0, 328px);
+        justify-content: center;
+        width: min(328px, calc(100vw - 32px));
+        gap: 8px;
     }
 }

@@ -9,6 +9,7 @@ import { useWalletAddress } from '../../utils/hooks/useWalletAddress'
 import LoginModal from '../Modals/LoginModal/LoginModal'
 import fetchTerms from '../../utils/fetchTerms'
 import { getInitials } from '../../utils/getInitials'
+import Icon from '../Icon/Icon'
 
 const isBigCashback = (symbol: string, amount: number) => {
     switch (symbol) {
@@ -168,8 +169,21 @@ const RetailerCard = ({
                         />
                     }
                 </div>
-                <div id={`retailer-name-${name}`} className={styles.retailer_name}>{offerName}</div>
-                <div id={`retailer-cashback-rate-${name}`} className={`${styles.cashback_rate} ${isCampaign ? styles.cashback_rate_campaign : ''}`}>{isCampaign ? '' : 'Up to '}{cashback} cashback</div>
+                <div className={styles.text_content}>
+                    <div id={`retailer-name-${name}`} className={styles.retailer_name}>{offerName}</div>
+                    <div id={`retailer-cashback-rate-${name}`} className={`${styles.cashback_rate} ${isCampaign ? styles.cashback_rate_campaign : ''}`}>
+                        {!isCampaign ? <span className={styles.cashback_prefix}>Up to </span> : null}
+                        <span className={styles.cashback_value}>{cashback}</span>
+                        <span className={styles.cashback_currency}> in {cryptoSymbols[0]}</span>
+                        <span className={styles.cashback_word}> cashback</span>
+                    </div>
+                </div>
+                <span className={styles.shop_button} aria-hidden="true">
+                    <span>Shop</span>
+                    <span className={styles.shop_icon_frame}>
+                        <Icon className={styles.shop_icon} name="openWebsite.svg" alt="" />
+                    </span>
+                </span>
             </div>
             <RetailerCardModal
                 open={modalState !== 'close'}

@@ -109,7 +109,38 @@
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        box-sizing: border-box;
+        width: min(360px, 100vw);
+        min-height: 100vh;
+        margin: 0 auto;
+        overflow-x: hidden;
+        background: var(--app-shell-bg, var(--bg));
+        border-color: var(--app-shell-border-c, transparent);
+        border-style: solid;
+        border-width: var(--app-shell-border-w, 0);
+        border-radius: var(--app-shell-radius, 0);
+        box-shadow: var(--app-shell-shadow, none);
+    }
+
+    .main {
+        box-sizing: border-box;
+        width: 100%;
+        gap: 16px;
+        padding: 16px;
+        overflow-x: hidden;
+    }
+
+    .filters_section {
+        position: static;
+        gap: 0;
+        width: min(328px, calc(100vw - 32px));
+        padding-bottom: 0;
+        background: transparent;
+    }
+
     .search_section {
+        display: none;
         flex-direction: column-reverse;
         gap: 22px;
     }
@@ -121,5 +152,9 @@
     .filter {
         width: 100%;
         justify-content: space-between;
+    }
+
+    .load {
+        color: var(--loading-msg-f-c);
     }
 }
