@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bring Cashback Portal local iframe host</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Bring iframe host</h1>
+        <p id="status">Starting...</p>
+      </div>
+      <div class="actions">
+        <button id="connect" type="button">Connect mock wallet</button>
+        <button id="disconnect" type="button">Disconnect</button>
+      </div>
+    </header>
+
+    <section class="wallet-panel" aria-label="Mock extension wallet data">
+      <div>
+        <span class="label">Generated wallet</span>
+        <strong id="walletAddress">Not connected</strong>
+      </div>
+    </section>
+
+    <main>
+      <iframe id="portal" title="Bring Cashback Portal"></iframe>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

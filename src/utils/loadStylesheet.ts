@@ -1,3 +1,5 @@
+import { publicPath } from './publicPath'
+
 /**
  * Append (or replace) the portal's theme stylesheets in <head>.
  *
@@ -41,10 +43,10 @@ export const loadStylesheet = (theme: string, platform: string) => {
         document.head.appendChild(link)
     }
 
-    set('bring-portal-theme-default', `/DEFAULT/stylesheets/${safeTheme}.css`)
+    set('bring-portal-theme-default', publicPath(`DEFAULT/stylesheets/${safeTheme}.css`))
 
     if (safePlatform !== 'DEFAULT') {
-        set('bring-portal-theme-platform', `/${safePlatform}/stylesheets/${safeTheme}.css`)
+        set('bring-portal-theme-platform', publicPath(`${safePlatform}/stylesheets/${safeTheme}.css`))
     } else {
         document.getElementById('bring-portal-theme-platform')?.remove()
     }

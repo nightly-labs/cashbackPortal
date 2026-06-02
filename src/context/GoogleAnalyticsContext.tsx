@@ -80,6 +80,7 @@ export const GoogleAnalyticsProvider: FC<Props> = ({ measurementId, children, pl
     }, [flowId, platform, walletAddress, userId])
 
     useEffect(() => {
+        if (!measurementId) return
         if (ReactGA.isInitialized && measurementId) return;
 
         ReactGA.initialize(measurementId, {

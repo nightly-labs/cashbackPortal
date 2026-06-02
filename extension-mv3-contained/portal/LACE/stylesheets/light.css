@@ -1,0 +1,292 @@
+/* Dark mode */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --bg: #171717;
+    --header-bg: #171717;
+
+    --title-f-s: 34px;
+    --title-f-w: 700;
+    --title-f-c: #FFF;
+
+    --subtitle-f-s: 20px;
+    --subtitle-f-w: 400;
+    --subtitle-f-c: #FFF;
+
+    --header-btn-bg: #242424;
+    --header-btn-bg-hover: #505050;
+    --header-btn-f-s: 18px;
+    --header-btn-f-w: 600;
+    --header-btn-f-c: #FFFFFF;
+    --header-btn-border-w: 0;
+    --header-btn-border-c: transparent;
+    --header-btn-radius: 32px;
+
+    --rewards-bg: #242424;
+
+    --rewards-img-size: 24px;
+
+    --claim-img-bg: #3F3F3F;
+    --claim-img-border-w: 0;
+    --claim-img-border-c: transparent;
+    --claim-img-radius: 50%;
+
+    --pending-img-bg: #3F3F3F;
+    --pending-img-border-w: 0;
+    --pending-img-border-c: transparent;
+    --pending-img-radius: 50%;
+
+    --rewards-text-f-s: 16px;
+    --rewards-text-f-w: 500;
+    --claim-text-f-c: #fff;
+    --pending-text-f-c: #fff;
+
+    --rewards-usd-f-s: 20px;
+    --rewards-usd-f-w: 400;
+    --claim-usd-f-c: #FFF;
+    --pending-usd-f-c: #FFF;
+
+    --rewards-amount-f-s: 28px;
+    --rewards-amount-f-w: 700;
+
+    --claim-amount-f-c: #FFF;
+
+    --pending-amount-f-c: #FFF;
+
+    --rewards-btn-width: 198px;
+    --rewards-btn-f-s: 18px;
+    --rewards-btn-f-w: 600;
+    --rewards-btn-radius: 32px;
+
+    --primary-btn-f-s: 18px;
+    --primary-btn-f-w: 600;
+    --primary-btn-f-c: #FFFFFF;
+    --primary-btn-radius: 32px;
+    --primary-btn-border-w: 0;
+    --primary-btn-border-c: transparent;
+    --primary-btn-bg: #F36A3D;
+    --primary-btn-hover-bg: #FF875B;
+    --primary-btn-pressed-bg: #F36A3D;
+    --primary-btn-disabled-bg: #F36B3D80;
+    --primary-btn-disabled-f-c: #FFFFFF80;
+
+    --pending-btn-f-c: #FFFFFF;
+    --pending-btn-border-c: transparent;
+    --pending-btn-border-w: 0;
+    --pending-btn-bg: #F36A3D;
+
+    --pending-btn-hover-f-c: #FFFFFF;
+    --pending-btn-hover-border-c: transparent;
+    --pending-btn-hover-border-w: 0;
+    --pending-btn-hover-bg: #FFFFFF2E;
+
+    --pending-btn-pressed-f-c: #FFFFFF;
+    --pending-btn-pressed-border-c: transparent;
+    --pending-btn-pressed-border-w: 0;
+    --pending-btn-pressed-bg: #FFFFFF1F;
+
+    --retailer-card-bg: #242424;
+    --retailer-card-border-w: 1px;
+    --retailer-card-border-color: #FFFFFF1F;
+    --retailer-card--hover-border-color: #FFFFFF1F;
+
+    --retailer-card-img-border-c: #DCE0E980;
+    --retailer-card-img-border-w: 1px;
+
+    --retailer-logo-fallback-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --retailer-logo-fallback-f-c: #FFF;
+    --retailer-logo-fallback-f-s: 37px;
+    --retailer-logo-fallback-f-s-two-letters: 24px;
+    --retailer-logo-fallback-f-w: 700;
+    --retailer-logo-fallback-border-w: 1px;
+    --retailer-logo-fallback-border-c: rgba(64, 74, 141, 0.50);
+
+    --retailer-card-flag-f-s: 13px;
+    --retailer-card-flag-f-w: 700;
+    --retailer-card-flag-f-c: #171717;
+    --retailer-card-flag-bg: #F36A3D;
+    --retailer-card-flag-radius: 4px;
+
+    --retailer-card-name-f-s: 17px;
+    --retailer-card-name-f-w: 600;
+    --retailer-card-name-f-c: #FFFFFF;
+
+    --retailer-card-amount-f-s: 13px;
+    --retailer-card-amount-f-c: #FFFFFF;
+    --retailer-card-amount-f-w: 500;
+    --retailer-card-amount-bg: #FFFFFF1F;
+
+    --deals-amount-f-s: 17px;
+    --deals-amount-f-w: 600;
+    --deals-amount-f-c: #FBFBFB;
+
+    --loading-msg-f-s: 13px;
+    --loading-msg-f-w: 500;
+    --loading-msg-f-c: #FBFBFB;
+    /* need to configure */
+    --filter-btn-f-s: 15px;
+    --filter-btn-f-w: 500;
+    --filter-btn-f-c: #FBFBFB;
+    --filter-btn-bg: transparent;
+    --filter-btn-hover-bg: #242424;
+    --filter-btn-hover-f-c: #FBFBFB;
+    --filter-btn-border-w: 1px;
+    --filter-btn-border-c: #FFFFFF1F;
+    --filter-btn-radius: 8px;
+    /* until here */
+    --category-btn-bg: transparent;
+    --category-btn-f-s: 15px;
+    --category-btn-f-w: 500;
+    --category-btn-f-c: #FBFBFB;
+    --category-btn-border-w: 1px;
+    --category-btn-border-c: #FFFFFF1F;
+    --category-btn-radius: 20px;
+    --category-btn-hover-bg: #242424;
+    --category-btn-hover-f-c: #FBFBFB;
+    --category-btn-hover-f-w: 500;
+    --category-btn-hover-border-w: 1px;
+    --category-btn-hover-border-c: #FFFFFF4D;
+    --category-btn-hover-radius: 20px;
+
+    --modal-bg: #242424;
+    --modal-overlay-bg: #000000A6;
+    --modal-border-w: 0;
+    --modal-border-c: transparent;
+    --modal-radius: 16px;
+    --modal-title-f-s: 22px;
+    --modal-title-f-w: 700;
+    --modal-title-f-c: #FFF;
+    --modal-paragraph-f-s: 17px;
+    --modal-paragraph-f-w: 500;
+    --modal-paragraph-f-c: #8C8C8C;
+
+    --modal-claim-amount-f-s: 40px;
+    --modal-claim-amount-f-w: 500;
+    --modal-claim-amount-f-c: #E1E6F5;
+    --modal-claim-details-bg: #15171F;
+    --modal-claim-details-border-w: 1px;
+    --modal-claim-details-border-c: #262A38;
+    --modal-claim-details-radius: 8px;
+    --modal-claim-disclaimer-f-s: 16px;
+    --modal-claim-disclaimer-f-w: 400;
+    --modal-claim-disclaimer-f-c: #7C85A3;
+    --modal-claim-address-bg: linear-gradient(195deg, rgba(26, 227, 187, 0.26) 0.57%, rgba(75, 109, 222, 0.10) 41.65%, rgba(75, 109, 222, 0.16) 100%);
+    --modal-claim-address-title-f-s: 16px;
+    --modal-claim-address-title-f-w: 400;
+    --modal-claim-address-title-f-c: #E1E6F5;
+    --modal-claim-address-border-w: 0;
+    --modal-claim-address-border-c: transparent;
+    --modal-claim-address-radius: 12px;
+    --modal-claim-address-f-s: 16px;
+    --modal-claim-address-f-w: 400;
+    --modal-claim-address-f-c: #fff;
+    --modal-claim-tooltip-f-s: 14px;
+    --modal-claim-tooltip-f-w: 400;
+    --modal-claim-tooltip-f-c: #E1E6F5;
+
+    --modal-claim-countdown-radius: 8px;
+    --modal-claim-countdown-border-w: 2px;
+    --modal-claim-countdown-border-c: #7892E8;
+    --modal-claim-countdown-progress-c: #1F253B;
+    --modal-claim-countdown-f-s: 16px;
+    --modal-claim-countdown-f-w: 500;
+    --modal-claim-countdown-f-c: #7892E8;
+
+    --modal-deal-name-f-s: 19px;
+    --modal-deal-name-f-w: 700;
+    --modal-deal-name-f-c: #FFF;
+    --modal-deal-markdown-bg: #171717;
+    --modal-deal-markdown-border-w: 0;
+    --modal-deal-markdown-border-c: transparent;
+    --modal-deal-markdown-radius: 12px;
+    --modal-deal-markdown-f-s: 12px;
+    --modal-deal-markdown-f-w: 500;
+    --modal-deal-markdown-f-c: #8C8C8C;
+    --modal-deal-markdown-bold-f-w: 700;
+    --modal-deal-markdown-bold-f-c: #FFF;
+    --modal-deal-consent-f-s: 12px;
+    --modal-deal-consent-f-w: 400;
+    --modal-deal-consent-f-c: #8C8C8C;
+    --modal-deal-terms-btn-hover-f-c: #F36A3D;
+
+    --scrollbar-bg: #BFBFBF66;
+    --scrollbar-w: 10px;
+
+    --search-bg: #000000;
+    --search-f-s: 17px;
+    --search-f-w: 400;
+    /* Here */
+    --search-f-c: #FFFFFF;
+    --search-option-f-c: #FFFFFF;
+    --search-option-hover-bg: #1F232E;
+    --search-radius: 8px;
+    --search-border-w: 0;
+    --search-border-c: transparent;
+    --search-placeholder-f-c: #8C8C8C;
+    --search-scrollbar-bg: #c8ccce;
+
+    --history-title-f-s: 28px;
+    --history-title-f-w: 700;
+    --history-title-f-c: #FFFFFF;
+
+    --history-back-f-s: 16px;
+    --history-back-f-w: 500;
+    --history-back-f-c: #8C8C8C;
+
+    --history-back-hover-f-s: 16px;
+    --history-back-hover-f-w: 500;
+    --history-back-hover-f-c: #8C8C8C;
+
+    --history-back-x-location: 64px;
+
+    --history-table-header-bg: #242424;
+    --history-table-header-border-c: transparent;
+    --history-table-header-border-w: 0;
+    --history-table-header-radius: 0;
+
+    --history-table-header-f-s: 15px;
+    --history-table-header-f-w: 400;
+    --history-table-header-f-c: #8C8C8C;
+
+    --history-table-row-border-w: 1px;
+    --history-table-row-border-c: #171717;
+    --history-table-row-bg: #242424;
+
+    --history-table-row-hover-bg: #242424D9;
+    --history-table-row-active-bg: #242424D9;
+    --history-claimed-icon-bg: #3F3F3F;
+    --history-details-btn-bg: #3F3F3F;
+    --history-purchase-name-f-s: 17px;
+    --history-purchase-name-f-w: 500;
+    --history-purchase-name-f-c: #FBFBFB;
+
+    --history-amount-f-s: 17px;
+    --history-amount-f-w: 400;
+    --history-amount-f-c: #FBFBFB;
+
+    --history-status-f-s: 17px;
+    --history-status-f-w: 400;
+    --history-status-f-c: #0BA;
+    --history-status-canceled-f-c: #FF5C71;
+
+    --history-description-f-s: 16px;
+    --history-description-f-w: 400;
+    --history-description-f-c: #FBFBFB;
+    --history-description-bold-f-w: 600;
+
+    --history-empty-f-s: 18px;
+    --history-empty-f-w: 500;
+    --history-empty-f-c: #FFF;
+
+    --faq-question-f-s: 16px;
+    --faq-question-f-w: 500;
+    --faq-question-f-c: #FFF;
+
+    --faq-answer-f-s: 16px;
+    --faq-answer-f-w: 400;
+    --faq-answer-f-c: #FFF;
+}
+
+* {
+    font-family: "Barlow", sans-serif;
+}

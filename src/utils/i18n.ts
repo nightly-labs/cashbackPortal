@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
+import { publicPath } from './publicPath';
 //   import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18n
@@ -17,7 +18,7 @@ i18n
         fallbackNS: 'DEFAULT',
         partialBundledLanguages: true,
         backend: {
-            loadPath: '/{{ns}}/translations/{{lng}}.json',
+            loadPath: publicPath('{{ns}}/translations/{{lng}}.json'),
         },
         // detection: {
         //     order: ['querystring', 'navigator'],

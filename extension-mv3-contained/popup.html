@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bring Portal</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Bring Portal</h1>
+        <p id="status">Starting...</p>
+      </div>
+      <button id="walletButton" type="button">Connect</button>
+    </header>
+
+    <div class="wallet">
+      <span>Wallet</span>
+      <strong id="walletAddress">Not connected</strong>
+    </div>
+
+    <main>
+      <iframe id="portal" title="Bring Cashback Portal"></iframe>
+    </main>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

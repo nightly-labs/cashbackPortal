@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Bring iframe local test",
+  "version": "0.0.1",
+  "description": "Loads the local Bring iframe host for extension testing.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; frame-src http://localhost:5175 http://127.0.0.1:5175 https://*.bringweb3.io;"
+  }
+}

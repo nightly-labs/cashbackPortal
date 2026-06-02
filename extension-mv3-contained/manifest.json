@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Bring contained portal demo",
+  "version": "0.0.1",
+  "description": "MV3 demo that loads the Cashback Portal from bundled extension files.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [
+    "https://api.bringweb3.io/*",
+    "https://media.bringweb3.io/*",
+    "http://localhost:5173/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self'; connect-src 'self' https://api.bringweb3.io http://localhost:5173; img-src 'self' https://media.bringweb3.io data:; style-src 'self' 'unsafe-inline';"
+  }
+}

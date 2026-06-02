@@ -6,10 +6,11 @@ import FrequentlyAskedQuestion from './pages/FrequentlyAskedQuestion/FrequentlyA
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import i18n from 'i18next';
 import fetchToken from './api/fetchToken';
-import { DEV_MODE, ENV, SHOW_TERMS_PLATFORMS } from './config';
+import { DEV_MODE, ENV, ROUTER_BASENAME, SHOW_TERMS_PLATFORMS } from './config';
 import { v4 } from 'uuid';
 import getUserId from './utils/getUserId';
 import { loadStylesheet } from './utils/loadStylesheet';
+import { publicPath } from './utils/publicPath';
 
 const rootLoader = async () => {
     const params = new URLSearchParams(document.location.search)
@@ -49,8 +50,8 @@ const rootLoader = async () => {
 
         return {
             ...res.info,
-            iconsPath: `/${platform}/icons/${theme}`,
-            defaultIconsPath: `/DEFAULT/icons/${theme}`,
+            iconsPath: publicPath(`${platform}/icons/${theme}`),
+            defaultIconsPath: publicPath(`DEFAULT/icons/${theme}`),
             userId: getUserId(res.info.platform),
             extensionId,
             showTerms,
@@ -76,8 +77,8 @@ const rootLoader = async () => {
         i18n.setDefaultNamespace(dev.platform.toUpperCase())
         return {
             ...dev,
-            iconsPath: `/${dev.platform.toUpperCase()}/icons/${theme}`,
-            defaultIconsPath: `/DEFAULT/icons/${theme}`,
+            iconsPath: publicPath(`${dev.platform.toUpperCase()}/icons/${theme}`),
+            defaultIconsPath: publicPath(`DEFAULT/icons/${theme}`),
             userId: getUserId(dev.platform),
             isTester: false,
             flowId,
@@ -114,6 +115,8 @@ const router = createBrowserRouter([
             },
         ],
     },
-]);
+], {
+    basename: ROUTER_BASENAME,
+});
 
 export default router;

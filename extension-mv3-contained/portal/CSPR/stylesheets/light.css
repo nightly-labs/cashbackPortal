@@ -1,0 +1,298 @@
+/* Light mode */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: rgba(245, 246, 247, 1);
+    --header-bg: rgba(245, 246, 247, 1);
+
+    --title-f-c:#1A1919;
+    --title-f-s: 25px;
+    --title-f-w: 700;
+
+    --subtitle-f-s: 18px;
+    --subtitle-f-w: 400;
+    --subtitle-f-c: #1A1919;
+
+    --header-btn-bg: linear-gradient(180deg, #F5F5F7 0%, #F0F0F2 100%);
+    --header-btn-bg-hover: var(--Fill-Light-fillSecondaryHover, linear-gradient(180deg, #EFF0F2 0%, #F5F6F7 100%));
+    --header-btn-f-s: 15px;
+    --header-btn-f-w: 600;
+    --header-btn-f-c: #0A2EBF;
+    --header-btn-border-w: 0;
+    --header-btn-border-c: transparent;
+    --header-btn-radius: 6px;
+
+    --rewards-bg: var(--Background-Light-backgroundPrimary, #FFF);
+
+    --rewards-img-size: 24px;
+    
+
+    --claim-img-bg:  #0A2EBF;;
+    --claim-img-border-w: 0;
+    --claim-img-border-c: transparent;
+    --claim-img-radius: 40px;
+
+    --pending-img-bg:var(--Content-Light-contentAction, #0A2EBF);
+    --pending-img-border-w: 0;
+    --pending-img-border-c: transparent;
+    --pending-img-radius: 40%;
+
+    --rewards-text-f-s: 24px;/*?*/
+    --rewards-text-f-w: 700;/*?*/
+    --claim-text-f-c:  #1A1919;/**/
+    --pending-text-f-c:  #1A1919;/*?*/
+
+    --rewards-usd-f-s: 15px;
+    --rewards-usd-f-w: 400;
+    --claim-usd-f-c:  #1A1919;
+    --pending-usd-f-c:  #1A1919;
+
+    --rewards-amount-f-s: 22px;
+    --rewards-amount-f-w: 700;
+
+    --claim-amount-f-c: #1A1919;;
+
+    --pending-amount-f-c: #1A1919;;
+
+    --rewards-btn-width: 205px;
+    --rewards-btn-f-s: 18px;
+    --rewards-btn-f-w: 600;
+    --rewards-btn-radius: 6px;
+
+    --primary-btn-f-s: 18px;
+    --primary-btn-f-w: 700;
+    --primary-btn-f-c:  #FFF;
+    --primary-btn-radius: 6px;
+    --primary-btn-border-w: 0;
+    --primary-btn-border-c: transparent;
+    --primary-btn-bg:  #CC000F;
+    --primary-btn-hover-bg:   #B2000D;
+    --primary-btn-pressed-bg:  #99000B;
+    --primary-btn-disabled-bg:  linear-gradient(180deg, #F5F5F7 0%, #F0F0F2 100%);
+    --primary-btn-disabled-f-c:  #BCBDC1;
+
+    --pending-btn-f-c: #0A2EBF;
+    --pending-btn-border-c: transparent;
+    --pending-btn-border-w: 0;
+    --pending-btn-bg: linear-gradient(180deg, #F5F5F7 0%, #F0F0F2 100%);
+
+    --pending-btn-hover-f-c: #0A2EBF;;
+    --pending-btn-hover-border-c: transparent;
+    --pending-btn-hover-border-w: 0;
+    --pending-btn-hover-bg:  var(--Fill-Light-fillSecondaryHover, linear-gradient(180deg, #EFF0F2 0%, #F5F6F7 100%));
+
+    --pending-btn-pressed-f-c: #0A2EBF;
+    --pending-btn-pressed-border-c: transparent;
+    --pending-btn-pressed-border-w: 0;
+    --pending-btn-pressed-bg:   #E8E9EC;
+
+    --retailer-card-bg: #FFF;
+    --retailer-card-border-w: 0px;
+    --retailer-card-border-color: transparent;
+    --retailer-card--hover-border-color: transparent;
+
+    --retailer-card-img-border-c: #FFF;
+    --retailer-card-img-border-w: 0px;
+    --retailer-card-img-border-campaign-c:  #FFF;
+
+    --retailer-card-flag-f-s: 14px;
+    --retailer-card-flag-f-w: 700;
+    --retailer-card-flag-f-c: #FFF;
+    --retailer-card-flag-bg: #2DDC88;
+    --retailer-card-flag-campaign-f-c: #2DDC88;/*?*/
+    --retailer-card-flag-campaign-bg: #FFF;/*?*/
+    --retailer-card-flag-radius:  var(--corner-radius-4, 4px) 0 0 var(--corner-radius-4, 4px);
+
+    --retailer-card-name-f-s: 18px;
+    --retailer-card-name-f-w: 700;
+    --retailer-card-name-f-c:  #1A1919;
+
+    --retailer-card-amount-f-s: 12px;
+    --retailer-card-amount-f-c: #CC000F;
+    --retailer-card-amount-f-w: 500;
+    --retailer-card-amount-bg: linear-gradient(180deg, #F5F5F7 0%, #F0F0F2 100%);
+    --retailer-card-amount-campaign-f-w: 600;/*?*/
+    --retailer-card-amount-campaign-bg: #F36A3D;/*?*/
+
+    --deals-amount-f-s: 15px;
+    --deals-amount-f-w: 400;
+    --deals-amount-f-c: rgba(114, 115, 122, 1);
+
+    --loading-msg-f-s: 13px;
+    --loading-msg-f-w: 500;
+    --loading-msg-f-c: #FBFBFB;
+    /* need to configure */
+    --filter-btn-f-s: 15px;
+    --filter-btn-f-w: 400;
+    --filter-btn-f-c: #0A2EBF;;
+    --filter-btn-bg: #EDEEF0;
+    --filter-btn-hover-bg: #EDEEF0;
+    --filter-btn-hover-f-c: #0A2EBF;
+    --filter-btn-border-w: 0px;
+    --filter-btn-border-c: transparent;
+    --filter-btn-radius: 6px;
+    /* until here */
+    --category-btn-bg: #EDEEF0;
+    --category-btn-f-s: 15px;
+    --category-btn-f-w: 400;
+    --category-btn-f-c: #0A2EBF;
+    --category-btn-border-w: 0px;
+    --category-btn-border-c: transparent;
+    --category-btn-radius: 6px;
+    --category-btn-hover-bg:#0A2EBF;
+    --category-btn-hover-f-c: #FFF;
+    --category-btn-hover-f-w: 700;
+    --category-btn-hover-border-w: 0px;
+    --category-btn-hover-border-c:transparent;
+    --category-btn-hover-radius: 6px;
+
+    --modal-offset-top: -120px;
+    --modal-bg: #F5F6F7;
+    --modal-overlay-bg: rgba(43, 43, 43, 0.6);
+    --modal-border-w: 0;
+    --modal-border-c: transparent;
+    --modal-radius: 12px;
+    --modal-title-f-s: 20px;
+    --modal-title-f-w: 700;
+    --modal-title-f-c: #1A1919;
+    --modal-paragraph-f-s: 13px;
+    --modal-paragraph-f-w: 400;
+    --modal-paragraph-f-c: #1A1919;
+/****/
+    --modal-claim-amount-f-s: 40px;
+    --modal-claim-amount-f-w: 500;
+    --modal-claim-amount-f-c: #e1f5e8;
+    --modal-claim-details-bg: #15171F;
+    --modal-claim-details-border-w: 1px;
+    --modal-claim-details-border-c: #262A38;
+    --modal-claim-details-radius: 8px;
+    --modal-claim-disclaimer-f-s: 16px;
+    --modal-claim-disclaimer-f-w: 400;
+    --modal-claim-disclaimer-f-c: #7C85A3;
+    --modal-claim-address-bg: linear-gradient(195deg, rgba(26, 227, 187, 0.26) 0.57%, rgba(75, 109, 222, 0.10) 41.65%, rgba(75, 109, 222, 0.16) 100%);
+    --modal-claim-address-title-f-s: 16px;
+    --modal-claim-address-title-f-w: 400;
+    --modal-claim-address-title-f-c: #E1E6F5;
+    --modal-claim-address-border-w: 0;
+    --modal-claim-address-border-c: transparent;
+    --modal-claim-address-radius: 12px;
+    --modal-claim-address-f-s: 16px;
+    --modal-claim-address-f-w: 400;
+    --modal-claim-address-f-c: #fff;
+    --modal-claim-tooltip-f-s: 14px;
+    --modal-claim-tooltip-f-w: 400;
+    --modal-claim-tooltip-f-c: #E1E6F5;
+
+    --modal-claim-countdown-radius: 8px;
+    --modal-claim-countdown-border-w: 2px;
+    --modal-claim-countdown-border-c: #7892E8;
+    --modal-claim-countdown-progress-c: #1F253B;
+    --modal-claim-countdown-f-s: 16px;
+    --modal-claim-countdown-f-w: 500;
+    --modal-claim-countdown-f-c: #7892E8;
+/***/
+    --modal-deal-name-f-s: 22px;
+    --modal-deal-name-f-w: 700;
+    --modal-deal-name-f-c: #1A1919;
+    --modal-deal-markdown-bg: transparent;
+    --modal-deal-markdown-border-w: 1px;
+    --modal-deal-markdown-border-c: var(--Content-Light-contentDisabled, #BCBDC1);
+    --modal-deal-markdown-radius: 12px;
+    --modal-deal-markdown-f-s: 14px;
+    --modal-deal-markdown-f-w: 400;
+    --modal-deal-markdown-f-c: var(--Content-Light-contentPrimary, #1A1919);
+    --modal-deal-markdown-bold-f-w: 600;
+    --modal-deal-markdown-bold-f-c: var(--Content-Light-contentPrimary, #1A1919);
+    --modal-deal-consent-f-s: 13px;
+    --modal-deal-consent-f-w: 400;
+    --modal-deal-consent-f-c: #84868C;
+    --modal-deal-terms-btn-hover-f-c: #CC000F;
+
+    --retailer-logo-fallback-bg: #FFF;
+    --retailer-logo-fallback-f-c: #000;
+    --retailer-logo-fallback-f-s: 37px;
+    --retailer-logo-fallback-f-s-two-letters: 23px;
+    --retailer-logo-fallback-f-w: 700;
+    --retailer-logo-fallback-border-w: 1px;
+    --retailer-logo-fallback-border-c: rgba(220, 224, 233, 0.50);
+    --scrollbar-bg: var(--Content-Light-contentSecondary, #84868C);
+    --scrollbar-w: 10px;
+
+    --search-bg: #FFFFFF;
+    --search-f-s: 15px;
+    --search-f-w: 400;
+    /* Here */
+    --search-f-c: var(--Content-Light-contentSecondary, #84868C);
+    --search-option-f-c: #d41313;/**/
+    --search-option-hover-bg: #1F232E;/**/
+    --search-radius: 6px;
+    --search-border-w: 1px;
+    --search-border-c: #E1E1E1;
+    --search-placeholder-f-c: #8C8C8C;
+    --search-scrollbar-bg:#84868C;
+
+    --history-title-f-s: 28px;
+    --history-title-f-w: 700;
+    --history-title-f-c:  var(--Content-Light-contentPrimary, #1A1919);
+
+    --history-back-f-s: 15px;
+    --history-back-f-w: 600;
+    --history-back-f-c: #0A2EBF;
+
+    --history-back-hover-f-s: 16px;
+    --history-back-hover-f-w: 500;
+    --history-back-hover-f-c: #0A2EBF;
+
+    --history-back-x-location: 64px;
+
+    --history-table-header-bg: transparent;
+    --history-table-header-border-c: transparent;
+    --history-table-header-border-w: 0;
+    --history-table-header-radius: 0;
+
+    --history-table-header-f-s: 14px;
+    --history-table-header-f-w: 500;
+    --history-table-header-f-c:#84868C;
+
+    --history-table-row-border-w: 1px;
+    --history-table-row-border-c: rgba(239, 239, 239, 0.50);
+    --history-table-row-bg: var(--Background-Light-backgroundPrimary, #FFF);
+
+    --history-table-row-hover-bg: var(--Background-Light-backgroundPrimary, #FFF);
+    --history-table-row-active-bg: var(--Background-Light-backgroundPrimary, #FFF);
+    --history-claimed-icon-bg: #0A2EBF;/*?*/
+    --history-details-btn-bg: var(--Fill-Light-fillSecondary, linear-gradient(180deg, #F5F5F7 0%, #F0F0F2 100%));/*?*/
+    --history-purchase-name-f-s: 15px;
+    --history-purchase-name-f-w: 600;
+    --history-purchase-name-f-c: var(--Content-Light-contentPrimary, #1A1919);
+
+    --history-amount-f-s: 15px;
+    --history-amount-f-w: 400;
+    --history-amount-f-c: var(--Content-Light-contentPrimary, #1A1919);
+
+    --history-status-f-s: 15px;
+    --history-status-f-w: 400;
+    --history-status-f-c:  #2DDC88;
+    --history-status-canceled-f-c: #CC000F;
+
+    --history-description-f-s: 15px;
+    --history-description-f-w: 400;
+    --history-description-f-c:  var(--Content-Light-contentPrimary, #1A1919);
+    --history-description-bold-f-w: 400;
+
+    --history-empty-f-s: 28px;
+    --history-empty-f-w: 700;
+    --history-empty-f-c:  var(--Content-Light-contentPrimary, #1A1919);
+
+    --faq-question-f-s: 15px;
+    --faq-question-f-w: 500;
+    --faq-question-f-c: var(--Content-Light-contentPrimary, #1A1919);
+
+    --faq-answer-f-s: 15px;
+    --faq-answer-f-w: 400;
+    --faq-answer-f-c: var(--Content-Light-contentPrimary, #1A1919);
+}
+
+* {
+    font-family: "Inter", sans-serif;
+}

@@ -46,7 +46,7 @@ const Icon = ({ name, fallbackName, onError, alt = '', ...rest }: IconProps) => 
     const defaultIconsPath =
         (liveTheme && loaderData.defaultIconsPath?.replace(/\/(light|dark)$/, `/${liveTheme}`)) ??
         loaderData.defaultIconsPath ??
-        themedIconsPath?.replace(/^\/[^/]+\//, '/DEFAULT/')
+        themedIconsPath?.replace(/^(?:\.\/|\/)?[^/]+\//, './DEFAULT/')
 
     // Build a deduped resolution chain so we never request the same URL twice
     // in a row (e.g. when `name === fallbackName` or platform === DEFAULT).

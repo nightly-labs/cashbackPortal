@@ -1,0 +1,324 @@
+/* Light mode */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --bg: #1A1E3E;
+    --header-bg: #1A1E3E;
+
+    --title-f-s: 25px;
+    --title-f-w: 700;
+    --title-f-c: #FFF;
+
+    --subtitle-f-s: 16px;
+    --subtitle-f-w: 700;
+    --subtitle-f-c: #FFF;
+
+    --header-btn-f-s: 13px;
+    --header-btn-f-w: 500;
+    --header-btn-f-c: #363F82;
+    --header-btn-border-w: 2px;
+    --header-btn-border-c: #363F82;
+    --header-btn-radius: 8px;
+    --header-btn-hover-bg: transparent;
+    --header-btn-hover-f-c: #363F82;
+    --header-btn-hover-border-w: 2px;
+    --header-btn-hover-border-c: #363F82;
+    --header-btn-pressed-bg: transparent;
+    --header-btn-pressed-f-c: #363F82;
+    --header-btn-pressed-border-w: 2px;
+    --header-btn-pressed-border-c: #363F82;
+
+    --rewards-bg: #13172F;
+    --rewards-icon-container-width: 52px;
+    --rewards-icon-container-height: 56px;
+    --rewards-img-size: 52px;
+    /* image size in figma width: 52px;height: 56px;*/
+
+    --claim-img-bg: #13172F;
+    /*doesnt exist in figma*/
+    --claim-img-border-w: 1px;
+    /*doesnt exist in figma*/
+    --claim-img-border-c: #AEB0BB;
+    /*doesnt exist in figma*/
+    --claim-img-radius: 40%;
+    /*doesnt exist in figma*/
+
+    --pending-img-bg: #13172F;
+    --pending-img-border-w: 1px;
+    --pending-img-border-c: #AEB0BB;
+    --pending-img-radius: 50%;
+
+    --rewards-text-f-s: 10px;
+    /*not found*/
+    --rewards-text-f-w: 10;
+    /*not found*/
+    --claim-text-f-c: #c32121;
+    /*not found*/
+    --pending-text-f-c: #cc2424;
+    /*not found*/
+
+    --rewards-usd-f-s: 15px;
+    --rewards-usd-f-w: 400;
+    --claim-usd-f-c: #FFF;
+    --pending-usd-f-c: #FFF;
+
+    --rewards-amount-f-s: 22px;
+    --rewards-amount-f-w: 700;
+
+    --claim-amount-f-c: #FFF;
+
+    --pending-amount-f-c: #FFF;
+
+    --rewards-btn-width: 290px;
+    --rewards-btn-f-s: 15px;
+    --rewards-btn-f-w: 700;
+    --rewards-btn-radius: 100px;
+
+    --primary-btn-f-s: 16px;
+    --primary-btn-f-w: 700;
+    --primary-btn-f-c: #FFF;
+    --primary-btn-radius: 100px;
+    --primary-btn-border-w: 0;
+    --primary-btn-border-c: transparent;
+    --primary-btn-bg: #404A8D;
+    --primary-btn-hover-bg: #404A8D;
+    --primary-btn-pressed-bg: #404A8D;
+    --primary-btn-disabled-bg: #404A8D;
+    --primary-btn-disabled-f-c: #FFF;
+
+    --pending-btn-f-c: #13172F;
+    --pending-btn-border-c: transparent;
+    --pending-btn-border-w: 0;
+    --pending-btn-bg: linear-gradient(168deg, #FFD300 -163.2%, #FF00B8 94.25%);
+
+    --pending-btn-hover-f-c: #13172F;
+    --pending-btn-hover-border-c: transparent;
+    --pending-btn-hover-border-w: 0;
+    --pending-btn-hover-bg: linear-gradient(168deg, #FFD300 -163.2%, #FF00B8 94.25%);
+
+    --pending-btn-pressed-f-c: #13172F;
+    --pending-btn-pressed-border-c: transparent;
+    --pending-btn-pressed-border-w: 0;
+    --pending-btn-pressed-bg: linear-gradient(168deg, #FFD300 -163.2%, #FF00B8 94.25%);
+
+    --retailer-card-bg: #00000000;
+    /*not found in figma*/
+    --retailer-card-border-w: 1px;
+    --retailer-card-border-color: #404A8D;
+    --retailer-card--hover-border-color: #404A8D;
+
+    --retailer-card-img-border-c: #404A8D80;
+    /*not found in figma*/
+    --retailer-card-img-border-w: 1px;
+    /*not found in figma*/
+    --retailer-card-img-border-campaign-c: #F36A3D;
+    /*not found in figma*/
+
+    --retailer-logo-fallback-bg: #FFF;
+    --retailer-logo-fallback-f-c: #13172F;
+    --retailer-logo-fallback-f-s: 37px;
+    --retailer-logo-fallback-f-s-two-letters: 25px;
+    --retailer-logo-fallback-f-w: 700;
+    --retailer-logo-fallback-border-w: 1px;
+    --retailer-logo-fallback-border-c: rgba(64, 74, 141, 0.50);
+
+    --retailer-card-flag-f-s: 11px;
+    --retailer-card-flag-f-w: 700;
+    --retailer-card-flag-f-c: #FFF;
+    --retailer-card-flag-bg: #FF00B8;
+    --retailer-card-flag-campaign-f-c: #FFF;
+    --retailer-card-flag-campaign-bg: #FF00B8;
+    --retailer-card-flag-radius: 4px;
+
+    --retailer-card-name-f-s: 15px;
+    --retailer-card-name-f-w: 700;
+    --retailer-card-name-f-c: #FFFFFF;
+
+    --retailer-card-amount-f-s: 12px;
+    --retailer-card-amount-f-c: #FFF;
+    --retailer-card-amount-f-w: 500;
+    --retailer-card-amount-bg: #404A8D;
+    --retailer-card-amount-campaign-f-w: 600;
+    --retailer-card-amount-campaign-bg: #404A8D;
+
+    --deals-amount-f-s: 16px;
+    --deals-amount-f-w: 400;
+    --deals-amount-f-c: #FFFFFF;
+
+    --loading-msg-f-s: 13px;
+    /*found but no value in figma*/
+    --loading-msg-f-w: 500;
+    /*found but no value in figma*/
+    --loading-msg-f-c: #FBFBFB;
+    /*found but no value in figma*/
+    /* need to configure */
+    /*found but no value in figma*/
+    --filter-btn-f-s: 12px;
+    --filter-btn-f-w: 600;
+    --filter-btn-f-c: #FFFFFF;
+    --filter-btn-bg: rgba(64, 74, 141, 0.40);
+    --filter-btn-hover-bg: rgba(64, 74, 141, 0.40);
+    --filter-btn-hover-f-c: #FFFFFF;
+    --filter-btn-border-w: 0px;
+    --filter-btn-border-c: transparent;
+    --filter-btn-radius: 10px;
+    /* until here */
+    --category-btn-bg: transparent;
+    --category-btn-f-s: 12px;
+    --category-btn-f-w: 600;
+    --category-btn-f-c: #FFFFFF;
+    --category-btn-border-w: 1px;
+    --category-btn-border-c: #AEB0BB;
+    --category-btn-radius: 7px;
+    --category-btn-hover-bg: #404A8D;
+    
+    --category-btn-hover-f-c: #FFFFFF;
+    --category-btn-hover-f-w: 600;
+    --category-btn-hover-border-w: 0px;
+    --category-btn-hover-border-c: transparent;
+    --category-btn-hover-radius: 7px;
+
+    --modal-offset-top: -120px;
+    --modal-bg: #1A1E3E;
+    --modal-overlay-bg: #0C0E1CB2;
+    --modal-border-w: 0;
+    --modal-border-c: transparent;
+    --modal-radius: 5px;
+    --modal-title-f-s: 20px;
+    --modal-title-f-w: 700;
+    --modal-title-f-c: #FFF;
+    --modal-paragraph-f-s: 12px;
+    --modal-paragraph-f-w: 400;
+    --modal-paragraph-f-c: #FFFFFF;
+    /*doesn't exeist for Ecko*/
+    --modal-claim-amount-f-s: 40px;
+    --modal-claim-amount-f-w: 500;
+    --modal-claim-amount-f-c: #e8f5e1;
+    --modal-claim-details-bg: #1f151b;
+    --modal-claim-details-border-w: 1px;
+    --modal-claim-details-border-c: #262A38;
+    --modal-claim-details-radius: 18px;
+    --modal-claim-disclaimer-f-s: 16px;
+    --modal-claim-disclaimer-f-w: 400;
+    --modal-claim-disclaimer-f-c: #7C85A3;
+    --modal-claim-address-bg: linear-gradient(195deg, rgba(26, 227, 187, 0.26) 0.57%, rgba(75, 109, 222, 0.10) 41.65%, rgba(75, 109, 222, 0.16) 100%);
+    --modal-claim-address-title-f-s: 16px;
+    --modal-claim-address-title-f-w: 400;
+    --modal-claim-address-title-f-c: #E1E6F5;
+    --modal-claim-address-border-w: 0;
+    --modal-claim-address-border-c: transparent;
+    --modal-claim-address-radius: 12px;
+    --modal-claim-address-f-s: 16px;
+    --modal-claim-address-f-w: 400;
+    --modal-claim-address-f-c: #fff;
+    --modal-claim-tooltip-f-s: 14px;
+    --modal-claim-tooltip-f-w: 400;
+    --modal-claim-tooltip-f-c: #E1E6F5;
+
+    --modal-claim-countdown-radius: 8px;
+    --modal-claim-countdown-border-w: 2px;
+    --modal-claim-countdown-border-c: #7892E8;
+    --modal-claim-countdown-progress-c: #1F253B;
+    --modal-claim-countdown-f-s: 16px;
+    --modal-claim-countdown-f-w: 500;
+    --modal-claim-countdown-f-c: #7892E8;
+    /*doesn't exeist for Ecko*/
+    --modal-deal-name-f-s: 19px;
+    --modal-deal-name-f-w: 700;
+    --modal-deal-name-f-c: #FFF;
+    --modal-deal-markdown-bg: #1A1E3E;
+    --modal-deal-markdown-border-w: 1px;
+    --modal-deal-markdown-border-c: #404A8D;
+    --modal-deal-markdown-radius: 5px;
+    --modal-deal-markdown-f-s: 13px;
+    --modal-deal-markdown-f-w: 400;
+    --modal-deal-markdown-f-c: #8C8C8C;
+    --modal-deal-markdown-bold-f-w: 700;
+    --modal-deal-markdown-bold-f-c: #FFF;
+    --modal-deal-consent-f-s: 12px;
+    --modal-deal-consent-f-w: 400;
+    --modal-deal-consent-f-c: #AEB0BB;
+    --modal-deal-terms-btn-hover-f-c: #FF00B8;
+
+    --scrollbar-bg: #404A8D;
+    --scrollbar-w: 10px;
+    
+    --search-bg: #1A1E3E;
+    --search-f-s: 15px;
+    --search-f-w: 400;
+    /* Here */
+    --search-f-c: #AEB0BB;
+    --search-option-f-c: #AEB0BB;
+    --search-option-hover-bg: #404A8D;
+    --search-radius: 8px;
+    --search-border-w: 1px;
+    --search-border-c: rgba(255, 255, 255, 0.70);
+    --search-placeholder-f-c: #8C8C8C;
+    --search-scrollbar-bg: #c8ccce;
+
+    --history-title-f-s: 20px;
+    --history-title-f-w: 700;
+    --history-title-f-c: #FFFFFF;
+
+    --history-back-f-s: 13px;
+    --history-back-f-w: 500;
+    --history-back-f-c: #FFFFFF;
+
+    --history-back-hover-f-s: 13px;
+    --history-back-hover-f-w: 500;
+    --history-back-hover-f-c: #FFFFFF;
+
+    --history-back-x-location: 64px;
+
+    --history-table-header-bg: #1A1E3E;
+    --history-table-header-border-c: transparent;
+    --history-table-header-border-w: 0;
+    --history-table-header-radius: 0;
+
+    --history-table-header-f-s: 14px;
+    --history-table-header-f-w: 400;
+    --history-table-header-f-c: #B4B4B4;
+
+    --history-table-row-border-w: 1px;
+    --history-table-row-border-c: #AEB0BB80;
+    --history-table-row-bg: #1A1E3E;
+    /**/
+    --history-table-row-hover-bg: #1A1E3E;
+    --history-table-row-active-bg: #1A1E3E;
+    --history-claimed-icon-bg: #DCE0E9;
+    /**/
+    --history-details-btn-bg: #13172F;
+    --history-purchase-name-f-s: 15px;
+    --history-purchase-name-f-w: 600;
+    --history-purchase-name-f-c: #FFFFFF;
+
+    --history-amount-f-s: 15px;
+    --history-amount-f-w: 400;
+    --history-amount-f-c: #FFFFFF;
+
+    --history-status-f-s: 15px;
+    --history-status-f-w: 400;
+    --history-status-f-c: #32D095;
+    --history-status-canceled-f-c: #FF5C71;
+
+    --history-description-f-s: 14px;
+    --history-description-f-w: 400;
+    --history-description-f-c: #FBFBFB;
+    --history-description-bold-f-w: 600;
+    /**/
+
+    --history-empty-f-s: 18px;
+    --history-empty-f-w: 500;
+    --history-empty-f-c: #FFF;
+
+    --faq-question-f-s: 15px;
+    --faq-question-f-w: 600;
+    --faq-question-f-c: #FFF;
+
+    --faq-answer-f-s: 15px;
+    --faq-answer-f-w: 600;
+    --faq-answer-f-c: #FFF;
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+}
