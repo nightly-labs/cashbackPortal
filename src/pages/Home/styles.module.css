@@ -116,11 +116,6 @@
         margin: 0 auto;
         overflow-x: hidden;
         background: var(--app-shell-bg, var(--bg));
-        border-color: var(--app-shell-border-c, transparent);
-        border-style: solid;
-        border-width: var(--app-shell-border-w, 0);
-        border-radius: var(--app-shell-radius, 0);
-        box-shadow: var(--app-shell-shadow, none);
     }
 
     .main {
