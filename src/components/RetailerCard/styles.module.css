@@ -40,10 +40,9 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    border-width: var(--retailer-card-img-border-w);
+    border-width: var(--retailer-logo-fallback-border-w, 1px);
     border-style: solid;
-    border-color: var(--retailer-card-img-border-c);
-    border: var(--retailer-logo-fallback-border-w, 1px) solid var(--retailer-logo-fallback-border-c, var(--retailer-card-img-border-c));
+    border-color: var(--retailer-logo-fallback-border-c, var(--retailer-card-img-border-c));
     border-radius: 50%;
 }
 
