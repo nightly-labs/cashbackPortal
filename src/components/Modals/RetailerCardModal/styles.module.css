@@ -145,7 +145,7 @@
 }
 
 .retailer_name {
-    color: var(--modal-deal-name-f-s);
+    font-size: var(--modal-deal-name-f-s);
     font-weight: var(--modal-deal-name-f-w);
     color: var(--modal-deal-name-f-c);
     white-space: nowrap;

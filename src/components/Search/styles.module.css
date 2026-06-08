@@ -8,6 +8,5 @@
     left: 58px;
     font-size: var(--search-f-s);
     font-weight: var(--search-f-w);
-    color: var(--search-placeholder-f-c);
-    color: hsl(0, 0%, 50%);
+    color: var(--search-placeholder-f-c, hsl(0, 0%, 50%));
 }
