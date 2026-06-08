@@ -1,4 +1,5 @@
 import { API_URL_PLATFORMS, API_KEY } from "../config"
+import { bringApiFetch } from "./bringApiFetch"
 
 interface Body {
     type: string
@@ -17,16 +18,26 @@ interface Body {
 const analytics = async (body: Body) => {
     body.timestamp = Date.now()
 
-    const res = await fetch(`${API_URL_PLATFORMS}analytics`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY
-        },
-        body: JSON.stringify(body)
-    })
-    const data = await res.json();
-    return data;
+    try {
+        const res = await bringApiFetch(`${API_URL_PLATFORMS}analytics`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': API_KEY
+            },
+            body: JSON.stringify(body)
+        })
+
+        if (!res.ok) {
+            throw new Error(`Failed to send analytics (${res.status})`)
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error('BRING: Error sending analytics event', error)
+        return null
+    }
 }
 
 export default analytics;

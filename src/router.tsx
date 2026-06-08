@@ -6,7 +6,7 @@ import FrequentlyAskedQuestion from './pages/FrequentlyAskedQuestion/FrequentlyA
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import i18n from 'i18next';
 import fetchToken from './api/fetchToken';
-import { DEV_MODE, ENV, ROUTER_BASENAME, SHOW_TERMS_PLATFORMS } from './config';
+import { DEFAULT_DEV_CRYPTO_SYMBOLS, DEV_MODE, ENV, ROUTER_BASENAME, SHOW_TERMS_PLATFORMS } from './config';
 import { v4 } from 'uuid';
 import getUserId from './utils/getUserId';
 import { loadStylesheet } from './utils/loadStylesheet';
@@ -63,21 +63,23 @@ const rootLoader = async () => {
     // Fallback to dev mode parameters if no token provided
     if (DEV_MODE) {
         const theme = urlTheme || 'light'
-        const showTerms = params.get('terms')?.toLowerCase() !== 'false' || SHOW_TERMS_PLATFORMS.includes((params.get('platform') || '').toUpperCase())
+        const platform = params.get('platform')?.toUpperCase()
+        const cryptoSymbols = params.get('cryptoSymbols')?.split(',').map(symbol => symbol.trim()).filter(Boolean) || DEFAULT_DEV_CRYPTO_SYMBOLS
+        const showTerms = params.get('terms')?.toLowerCase() !== 'false' || SHOW_TERMS_PLATFORMS.includes(platform || '')
         const autoclaim = params.get('autoclaim') === 'true'
         const dev = {
             walletAddress: params.get('walletAddress') || null,
-            platform: params.get('platform'),
-            cryptoSymbols: params.get('cryptoSymbols')?.split(','),
+            platform,
+            cryptoSymbols,
             isCountryAvailable: true,
         }
         if (!dev.platform) throw Error('Missing platform')
-        loadStylesheet(theme, dev.platform.toUpperCase())
-        await i18n.loadNamespaces(dev.platform.toUpperCase())
-        i18n.setDefaultNamespace(dev.platform.toUpperCase())
+        loadStylesheet(theme, dev.platform)
+        await i18n.loadNamespaces(dev.platform)
+        i18n.setDefaultNamespace(dev.platform)
         return {
             ...dev,
-            iconsPath: publicPath(`${dev.platform.toUpperCase()}/icons/${theme}`),
+            iconsPath: publicPath(`${dev.platform}/icons/${theme}`),
             defaultIconsPath: publicPath(`DEFAULT/icons/${theme}`),
             userId: getUserId(dev.platform),
             isTester: false,

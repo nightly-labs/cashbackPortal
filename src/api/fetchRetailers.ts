@@ -1,4 +1,5 @@
 import { API_KEY, API_URL_PLATFORMS } from "../config"
+import { bringApiFetch } from "./bringApiFetch"
 
 interface Body extends BackendRequestBody {
     type: string
@@ -24,19 +25,38 @@ interface Response {
 }
 
 const fetchRetailers = async (body: Body): Promise<Response> => {
-    const res = await fetch(`${API_URL_PLATFORMS}retailers`, {
-        method: "POST",
-        body: JSON.stringify(body),
-        mode: "cors",
-        headers: {
-            "x-api-key": API_KEY,
-            "Content-Type": "application/json",
-        },
-    })
+    try {
+        const res = await bringApiFetch(`${API_URL_PLATFORMS}retailers`, {
+            method: "POST",
+            body: JSON.stringify(body),
+            mode: "cors",
+            headers: {
+                "x-api-key": API_KEY,
+                "Content-Type": "application/json",
+            },
+        })
 
-    const data = await res.json()
+        if (!res.ok) {
+            throw new Error(`Failed to fetch retailers (${res.status})`)
+        }
 
-    return data
+        const data = await res.json()
+        return data
+    } catch (error) {
+        console.error('BRING: Failed to fetch retailers', error)
+        return {
+            topGeneralTermsUrl: '',
+            generalTermsUrl: '',
+            items: [],
+            nextPageNumber: null,
+            prevPageNumber: null,
+            retailerIconBasePath: '',
+            retailerTermsBasePath: '',
+            totalItems: 0,
+            iconQueryParam: '',
+            campaigns: []
+        }
+    }
 }
 
 export default fetchRetailers

@@ -1,4 +1,5 @@
 import { API_URL_PLATFORMS, API_KEY } from "../../config"
+import { bringApiFetch } from "../bringApiFetch"
 
 interface Body extends BackendRequestBody {
     walletAddress: string | null
@@ -18,16 +19,26 @@ const claimInitiate = async (body: Body): Promise<Response> => {
         return { messageToSign: "", status: 400 }
     }
 
-    const res = await fetch(`${API_URL_PLATFORMS}claim-init`, {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-            "x-api-key": API_KEY,
-            "Content-Type": "application/json",
-        },
-    })
-    const data = await res.json()
-    return data
+    try {
+        const res = await bringApiFetch(`${API_URL_PLATFORMS}claim-init`, {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                "x-api-key": API_KEY,
+                "Content-Type": "application/json",
+            },
+        })
+
+        if (!res.ok) {
+            throw new Error(`Failed to initiate claim (${res.status})`)
+        }
+
+        const data = await res.json()
+        return data
+    } catch (error) {
+        console.error('BRING: Failed to initiate claim', error)
+        return { messageToSign: "", status: 500 }
+    }
 }
 
 export default claimInitiate
