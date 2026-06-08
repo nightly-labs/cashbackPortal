@@ -50,9 +50,10 @@ const rootLoader = async () => {
 
         return {
             ...res.info,
+            platform,
             iconsPath: publicPath(`${platform}/icons/${theme}`),
             defaultIconsPath: publicPath(`DEFAULT/icons/${theme}`),
-            userId: getUserId(res.info.platform),
+            userId: getUserId(platform),
             extensionId,
             showTerms,
             autoclaim,
