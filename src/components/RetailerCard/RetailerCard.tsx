@@ -10,6 +10,7 @@ import LoginModal from '../Modals/LoginModal/LoginModal'
 import fetchTerms from '../../utils/fetchTerms'
 import { getInitials } from '../../utils/getInitials'
 import Icon from '../Icon/Icon'
+import resetEmbeddingScroll from '../../utils/resetEmbeddingScroll'
 
 const isBigCashback = (symbol: string, amount: number) => {
     switch (symbol) {
@@ -114,6 +115,11 @@ const RetailerCard = ({
     }
 
     const handleClick = () => {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur()
+        }
+        resetEmbeddingScroll()
+
         if (!walletAddress) {
             setLoginModalState('open')
             return

@@ -3,6 +3,7 @@ import { type FormEvent, type KeyboardEvent, type MouseEvent, type PointerEvent,
 import { useSwipeable } from 'react-swipeable';
 import useWindowSize from '../../utils/hooks/useWindowSize';
 import Icon from '../Icon/Icon';
+import resetEmbeddingScroll from '../../utils/resetEmbeddingScroll';
 
 interface Props {
     categories: Category[];
@@ -146,10 +147,12 @@ const Categories = ({ categories, category, onClickFn, searchValue, onSearchFn }
 
     const submitSearchTerm = () => {
         const value = searchInput.trim()
+        inputRef.current?.blur()
 
         if (!value) {
             onSearchFn?.(null)
             setIsSearchOpen(false)
+            resetEmbeddingScroll()
             return
         }
 
@@ -157,6 +160,7 @@ const Categories = ({ categories, category, onClickFn, searchValue, onSearchFn }
 
         onSearchFn({ value, label: value })
         setIsSearchOpen(false)
+        resetEmbeddingScroll()
     }
 
     const handleSearchInputChange = (value: string) => {
