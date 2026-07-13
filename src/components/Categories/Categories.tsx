@@ -137,6 +137,10 @@ const Categories = ({ categories, category, onClickFn, searchValue, onSearchFn }
 
         if (isDragClick) return
 
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur()
+        }
+        resetEmbeddingScroll()
         onClickFn(cat)
     }
 

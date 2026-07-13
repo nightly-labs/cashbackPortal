@@ -33,6 +33,17 @@ const bringProxyCorsPlugin = () => ({
   },
 })
 
+const extractApiKeyFromBundle = (js: string): string | null => {
+  const literalApiKey = js.match(/["']x-api-key["']\s*:\s*["']([^"']+)["']/)?.[1]
+  if (literalApiKey) return literalApiKey
+
+  const apiKeyVariable = js.match(/["']x-api-key["']\s*:\s*([A-Za-z_$][\w$]*)/)?.[1]
+  if (!apiKeyVariable) return null
+
+  const escapedVariable = apiKeyVariable.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return js.match(new RegExp(`(?:^|[,;])\\s*${escapedVariable}\\s*=\\s*["']([^"']+)["']`))?.[1] ?? null
+}
+
 async function getHostedPortalApiKey(mode: string) {
   const env = loadEnv(mode, process.cwd(), '')
   const bootstrapUrl = env.VITE_LOCAL_PORTAL_BOOTSTRAP_API || 'https://api.bringweb3.io/v1/extension/check/portal'
@@ -61,7 +72,7 @@ async function getHostedPortalApiKey(mode: string) {
 
     const jsUrl = new URL(jsPath, portalUrl).toString()
     const js = await fetch(jsUrl).then((response) => response.text())
-    return js.match(/Ki="([^"]+)"/)?.[1] ?? null
+    return extractApiKeyFromBundle(js)
   } catch {
     return null
   }

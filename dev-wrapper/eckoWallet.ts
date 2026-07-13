@@ -76,7 +76,7 @@ export function createEckoWallet(opts: EckoWalletOptions = {}): MockWallet {
             }
         },
 
-        async signMessage(_message: string): Promise<SignResult> {
+        async signMessage(): Promise<SignResult> {
             throw new Error('Ecko adapter is connect-only in the dev wrapper; signMessage is not implemented.')
         },
     }
