@@ -20,12 +20,21 @@ export const formatCurrency = (amount: number | undefined) => {
 export const formatDate = (date: string): string => {
     const format = new Date(date)
 
-    return format.toLocaleDateString("en-US", {
+    return format.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
         year: "numeric",
-        month: "short",
-        day: "numeric",
     })
 }
+
+export const createTransactionDetails = (description: string[][]) => description
+    .filter(([date, text, txid]) => date || text || txid)
+    .map(([date, text, txid]) => ({
+        text: description.length > 1
+            ? [date, text].filter(Boolean).join(' — ')
+            : text || date,
+        txid,
+    }))
 
 export const daysLeft = (date: string): number => {
     const targetDate: Date = new Date(date)

@@ -1,14 +1,14 @@
 import styles from './styles.module.css'
 import { Link, useRouteLoaderData, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import fetchCache from '../../../api/fetchCache'
-import { createDescription, formatCurrency, formatDate, formatStatus } from '../helpers'
+import { createDescription, createTransactionDetails, formatCurrency, formatDate, formatStatus } from '../helpers'
 import { useGoogleAnalytics } from '../../../utils/hooks/useGoogleAnalytics'
 import { useTranslation } from 'react-i18next'
 import { useWalletAddress } from '../../../utils/hooks/useWalletAddress'
 import Icon from '../../../components/Icon/Icon'
+import TransactionHistoryItem from '../../../components/TransactionHistoryItem/TransactionHistoryItem'
 
 interface HistoryDesktop {
     status: string
@@ -36,91 +36,23 @@ interface ClaimsRes {
     [key: string]: ClaimToken
 }
 
-const Row = ({ isActive, toggleFn, imgSrc, imgSrcFallback, status, tokenAmount, totalEstimatedUsd, imgBg, retailerName = 'Total claims', description }: RowProps): JSX.Element => {
+const Row = ({ isActive, toggleFn, imgSrc, imgSrcFallback, status, tokenAmount, imgBg, retailerName = 'Total claims', description }: RowProps): JSX.Element => {
+    const isClaimSummary = retailerName === 'Total claims'
+
     return (
-        <div id="history-desktop-row" className={`${styles.collapsible} ${isActive ? styles.collapsible_open : ''}`}>
-            <div
-                className={styles.details_container}
-                onClick={toggleFn}
-            >
-                <div className={styles.name_container}>
-                    <div
-                        className={styles.img_container}
-                        style={status.toLowerCase() === 'claimed' ? {} : { background: imgBg || 'white' }}
-                    >
-                        <img
-                            style={{ height: `${status.toLowerCase() === 'claimed' ? 'auto' : '100%'}` }}
-                            className={styles.img}
-                            src={imgSrc}
-                            alt="logo"
-                            onError={imgSrcFallback ? (e) => {
-                                if (e.currentTarget.src !== imgSrcFallback) e.currentTarget.src = imgSrcFallback
-                            } : undefined}
-                        />
-                    </div>
-                    <span className={styles.purchase_name}>{retailerName}</span>
-                </div>
-                <div className={styles.amount}>
-                    {totalEstimatedUsd ?
-                        <>
-                            <span>{tokenAmount}</span>
-                            {
-                                totalEstimatedUsd !== 0 ?
-                                    <>
-                                        <span>/</span>
-                                        <span>{totalEstimatedUsd}</span>
-                                    </>
-                                    :
-                                    null
-                            }
-                        </>
-                        :
-                        <span>{tokenAmount}</span>
-                    }
-                </div>
-                <div className={`${styles.status} ${styles[status.toLowerCase()]}`}>{status}</div>
-                <button
-                    id="history-desktop-details-btn"
-                    className={`${styles.details_btn} ${isActive ? styles.rotate : ''}`}
-                >
-                    <Icon name="arrow-down.svg" alt="arrow-down" />
-                </button>
-            </div>
-            <AnimatePresence>
-                {isActive && <motion.div
-                    className={styles.description_container}
-                    initial={{ height: 0, opacity: 0, minHeight: 0 }}
-                    animate={{ height: 'auto', opacity: 1, minHeight: '40px' }}
-                    exit={{ height: 0, opacity: 0, minHeight: 0 }}
-                    transition={{ duration: 0.2 }}
-                >
-                    <div>
-                        {description.map((item, index) => {
-                            
-                            return (
-                                <div
-                                    key={`description-${index}`}
-                                    className={styles.description}
-                                >
-                                    {
-                                        item[0] || item[1] ?
-                                            <>
-                                                <b>{item[0]}</b> - {item[1]}
-                                                {item[2] && (
-                                                    <span className={styles.txid}>
-                                                        TxID: {item[2]}
-                                                    </span>
-                                                )}
-                                            </>
-                                            : null
-                                    }
-                                </div>
-                            )
-                        })}
-                    </div>
-                </motion.div>}
-            </AnimatePresence>
-        </div >
+        <TransactionHistoryItem
+            retailerName={retailerName}
+            date={description[0]?.[0] ?? ''}
+            amount={tokenAmount}
+            status={status}
+            imageSrc={imgSrc}
+            imageSrcFallback={imgSrcFallback}
+            imageBackground={imgBg || (isClaimSummary ? 'var(--history-claimed-icon-bg)' : '#FFFFFF')}
+            imageFit={isClaimSummary ? 'contain' : 'cover'}
+            details={createTransactionDetails(description)}
+            expanded={isActive}
+            onToggle={toggleFn}
+        />
     )
 }
 
@@ -217,38 +149,29 @@ const HistoryDesktop = () => {
                 </span>
             </Link>
             {balance?.movements.claims.length || balance?.movements.deals.length ? (
-                <>
-                    <h1 className={styles.title}>{t('historyTitle')}</h1>
-                    <div className={styles.table}>
-                        <div className={styles.table_header}>
-                            <span className={styles.table_header_cell}>Purchase</span>
-                            <span className={styles.table_header_cell}>Amount</span>
-                            <span className={styles.table_header_cell}>Status</span>
-                            <span className={styles.table_header_cell}>Details</span>
-                        </div>
-                        {
-                            history.map((item, i) =>
-                                <Row
-                                    key={`history-${i}`}
-                                    isActive={activeRow === i}
-                                    toggleFn={() => {
-                                        if (activeRow !== i) {
-                                            setActiveRow(i)
-                                            sendGaEvent('history_expand', {
-                                                category: 'user_action',
-                                                action: 'click',
-                                                details: item.retailerName || 'Total claims',
-                                            })
-                                        } else {
-                                            setActiveRow(-1)
-                                        }
-                                    }}
-                                    {...item}
-                                />
-                            )
-                        }
-                    </div>
-                </>
+                <div className={styles.table}>
+                    {
+                        history.map((item, i) =>
+                            <Row
+                                key={`history-${i}`}
+                                isActive={activeRow === i}
+                                toggleFn={() => {
+                                    if (activeRow !== i) {
+                                        setActiveRow(i)
+                                        sendGaEvent('history_expand', {
+                                            category: 'user_action',
+                                            action: 'click',
+                                            details: item.retailerName || 'Total claims',
+                                        })
+                                    } else {
+                                        setActiveRow(-1)
+                                    }
+                                }}
+                                {...item}
+                            />
+                        )
+                    }
+                </div>
             ) : (
                 <div className={styles.empty_container}>
                     {imgExists ? (

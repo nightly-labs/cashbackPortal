@@ -291,6 +291,24 @@
 
     --history-table-row-hover-bg: #F0F2F5;
     --history-table-row-active-bg: #FFFFFF;
+    --transaction-history-bg: #FFFFFF;
+    --transaction-history-hover-bg: #F0F2F5;
+    --transaction-history-title: #1F2937;
+    --transaction-history-muted: #6B7280;
+    --transaction-history-divider: #E5E7EB;
+    --transaction-history-focus: #3D5AEB;
+    --transaction-history-claimed-amount: #07836B;
+    --transaction-history-claimed-badge: rgba(8, 194, 157, 0.14);
+    --transaction-history-claimed-status: #07836B;
+    --transaction-history-claimed-hover-amount: #056B58;
+    --transaction-history-claimed-hover-badge: rgba(8, 194, 157, 0.20);
+    --transaction-history-claimed-hover-status: #056B58;
+    --transaction-history-pending-amount: #2E48D9;
+    --transaction-history-pending-badge: #E6EAFF;
+    --transaction-history-pending-status: #3D5AEB;
+    --transaction-history-canceled-amount: #C50035;
+    --transaction-history-canceled-badge: rgba(255, 19, 81, 0.12);
+    --transaction-history-canceled-status: #C50035;
     --history-claimed-icon-bg: #3D5AEB;
     --history-details-btn-bg: #E5E7EB;
     --history-purchase-name-f-s: 16px;
